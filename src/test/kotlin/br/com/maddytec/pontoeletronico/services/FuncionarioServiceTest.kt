@@ -15,9 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import java.util.*
 
 @SpringBootTest
-class FuncionarioServiceTest(
-    @Autowired val funcionarioService: FuncionarioService
-) {
+class FuncionarioServiceTest( @Autowired val funcionarioService: FuncionarioService ) {
 
     @MockBean
     private val funcionariolRepository: FuncionarioRepository? = null
