@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: maddytec@123
+      database: ponto_eletronico_db
+      port: 27017
+      host: localhost
+
+paginacao:
+  quantidade-por-pagina: 10

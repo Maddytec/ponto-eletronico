@@ -56,7 +56,6 @@ class LancamentoServiceTest(@Autowired val lancamentoService: LancamentoService 
 
     private fun lancamento(): Lancamento {
         return Lancamento(
-            "1",
             LocalDate.now(),
             TipoEnum.INICIO_TRABALHO,
             "1"

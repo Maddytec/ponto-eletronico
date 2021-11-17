@@ -12,4 +12,6 @@ interface FuncionarioService {
 
     fun buscarPorId(id: String): Funcionario?
 
+    fun get(): List<Funcionario>
+
 }

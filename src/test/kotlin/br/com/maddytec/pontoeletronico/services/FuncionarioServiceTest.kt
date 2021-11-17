@@ -3,7 +3,6 @@ package br.com.maddytec.pontoeletronico.services
 import br.com.maddytec.pontoeletronico.documents.Funcionario
 import br.com.maddytec.pontoeletronico.enums.PerfilEnum
 import br.com.maddytec.pontoeletronico.repository.FuncionarioRepository
-import br.com.maddytec.pontoeletronico.utils.SenhaUtils
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -61,7 +60,7 @@ class FuncionarioServiceTest( @Autowired val funcionarioService: FuncionarioServ
         "1",
         "Madson Silva",
         EMAIL,
-        SenhaUtils().gerarBcrypt( "123456"),
+        "123456",
         CPF,
         PerfilEnum.ROLE_ADMIN,
         "1",

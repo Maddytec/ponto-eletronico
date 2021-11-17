@@ -5,9 +5,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
 
-data class FuncionarioDto(
-    val id: String? = null,
-
+data class FuncionarioResponseDto(
     @get:NotEmpty(message = "Nome é obrigatório.")
     @get:Length(min = 3, max = 200, message = "Nome deve conter entre 3 e 200 caracteres.")
     val nome: String = "",
@@ -17,9 +15,7 @@ data class FuncionarioDto(
     @get:Email(message = "Email inválido.")
     val email: String = "",
     val cpf: String = "",
-    val empresaId: String = "",
 
-    val senha: String? = null,
     val valorHora: String? = null,
     val quantidadeHorasTrabalhadaDia: String? = null,
     val quantidadeHorasAlmoco: String? = null

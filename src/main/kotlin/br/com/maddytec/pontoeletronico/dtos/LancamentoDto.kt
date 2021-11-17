@@ -3,8 +3,6 @@ package br.com.maddytec.pontoeletronico.dtos
 import javax.validation.constraints.NotEmpty
 
 data class LancamentoDto(
-    val id: String? = null,
-
     @get:NotEmpty(message = "Data é obrigatório.")
     val data: String? = null,
 
@@ -13,5 +11,6 @@ data class LancamentoDto(
 
     val descricao: String? = null,
     val localizacao: String? = null,
-    val funcionarioId: String? = null
+    val funcionarioId: String? = null,
+    val id: String? = null,
 )

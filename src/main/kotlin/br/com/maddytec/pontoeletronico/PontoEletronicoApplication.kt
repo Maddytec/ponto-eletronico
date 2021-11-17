@@ -6,6 +6,7 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class PontoEletronicoApplication
 
-fun main(args: Array<String>) {
-	runApplication<PontoEletronicoApplication>(*args)
-}
+	fun main(args: Array<String>) {
+		runApplication<PontoEletronicoApplication>(*args)
+	}
+
