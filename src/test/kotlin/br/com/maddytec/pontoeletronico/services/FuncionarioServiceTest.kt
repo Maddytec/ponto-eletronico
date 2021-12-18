@@ -14,7 +14,10 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import java.util.*
 
 @SpringBootTest
-class FuncionarioServiceTest( @Autowired val funcionarioService: FuncionarioService ) {
+class FuncionarioServiceTest {
+
+    @Autowired
+    private val funcionarioService: FuncionarioService? = null
 
     @MockBean
     private val funcionariolRepository: FuncionarioRepository? = null
@@ -34,7 +37,7 @@ class FuncionarioServiceTest( @Autowired val funcionarioService: FuncionarioServ
 
     @Test
     fun salvarTest(){
-        val funcionario: Funcionario = funcionarioService?.salvar(funcionario())
+        val funcionario: Funcionario? = funcionarioService?.salvar(funcionario())
         Assertions.assertNotNull(funcionario)
     }
 
@@ -57,11 +60,10 @@ class FuncionarioServiceTest( @Autowired val funcionarioService: FuncionarioServ
     }
 
     private fun funcionario(): Funcionario = Funcionario(
-        "1",
         "Madson Silva",
         EMAIL,
-        "123456",
-        CPF,
+        "123456789",
+         CPF,
         PerfilEnum.ROLE_ADMIN,
         "1",
         null,
