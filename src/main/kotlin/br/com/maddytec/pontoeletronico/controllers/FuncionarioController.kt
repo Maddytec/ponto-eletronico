@@ -1,26 +1,16 @@
 package br.com.maddytec.pontoeletronico.controllers
 
 import br.com.maddytec.pontoeletronico.documents.Funcionario
-import br.com.maddytec.pontoeletronico.documents.Lancamento
 import br.com.maddytec.pontoeletronico.dtos.FuncionarioDto
 import br.com.maddytec.pontoeletronico.dtos.FuncionarioResponseDto
-import br.com.maddytec.pontoeletronico.dtos.LancamentoDto
 import br.com.maddytec.pontoeletronico.enums.PerfilEnum
-import br.com.maddytec.pontoeletronico.enums.TipoEnum
 import br.com.maddytec.pontoeletronico.response.Response
 import br.com.maddytec.pontoeletronico.services.FuncionarioService
-import br.com.maddytec.pontoeletronico.services.LancamentoService
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Sort
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
-import org.springframework.validation.ObjectError
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.validation.Valid
 
 @RestController
