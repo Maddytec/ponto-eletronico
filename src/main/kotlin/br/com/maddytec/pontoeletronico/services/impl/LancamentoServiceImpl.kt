@@ -21,8 +21,9 @@ class LancamentoServiceImpl(val lancamentoRepository: LancamentoRepository)  : L
         return LancamentoDto.ofEntity(lancamento)
     }
 
-    override fun remover(id: String) {
-        lancamentoRepository.deleteById(id)
+    override fun remover(lacamentoId: String) {
+        lancamentoRepository.findById(lacamentoId).orElseThrow { throw Exception("Lançamento não encontrado") }
+        lancamentoRepository.deleteById(lacamentoId)
     }
 
     override fun atualizar(lacamentoId: String, lancamentoDto: LancamentoDto) {

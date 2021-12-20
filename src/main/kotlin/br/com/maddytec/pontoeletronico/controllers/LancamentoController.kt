@@ -3,7 +3,6 @@ package br.com.maddytec.pontoeletronico.controllers
 import br.com.maddytec.pontoeletronico.documents.Funcionario
 import br.com.maddytec.pontoeletronico.documents.Lancamento
 import br.com.maddytec.pontoeletronico.dtos.LancamentoDto
-import br.com.maddytec.pontoeletronico.enums.TipoEnum
 import br.com.maddytec.pontoeletronico.exception.NotFoundExceptionHandle
 import br.com.maddytec.pontoeletronico.response.Response
 import br.com.maddytec.pontoeletronico.services.FuncionarioService
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.ObjectError
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDateTime
 import java.util.*
 import javax.validation.Valid
 
@@ -103,7 +101,7 @@ class LancamentoController(val lancamentoService: LancamentoService, val funcion
             return
         }
 
-        val funcionario: Funcionario? = funcionarioService.buscarPorId(lancamentoDto.funcionarioId!!)
+        val funcionario: Funcionario? = funcionarioService.buscarPorId(lancamentoDto.funcionarioId)
 
         funcionario ?: result.addError(
             ObjectError(
@@ -115,7 +113,7 @@ class LancamentoController(val lancamentoService: LancamentoService, val funcion
     }
 
     private fun converteLancamentoDto(lancamento: Lancamento?): LancamentoDto? =
-         lancamento?.let {
+        lancamento?.let {
             LancamentoDto(
                 it.data?.format(DateUtils.formmaterDateHourBr),
                 it.tipo?.name,
@@ -125,17 +123,28 @@ class LancamentoController(val lancamentoService: LancamentoService, val funcion
             )
         }
 
-    private fun validarLancamentoPorId(lancamentoId: String?, bindingResult: BindingResult){
-            val lancamento: LancamentoDto? = lancamentoId?.let { lancamentoService.buscarPorId(it) }
-            if (lancamento == null ){
-                bindingResult.addError(ObjectError("lancamento", "Lancamento não encontrado."))
-            }
+    private fun validarLancamentoPorId(lancamentoId: String?, bindingResult: BindingResult) {
+        val lancamento: LancamentoDto? = lancamentoId?.let { lancamentoService.buscarPorId(it) }
+        if (lancamento == null) {
+            bindingResult.addError(ObjectError("lancamento", "Lancamento não encontrado."))
+        }
     }
 
-    @PutMapping("/{id}")
-    fun atualizar(@PathVariable lancamentoId: String, @RequestBody lancamentoDto: LancamentoDto,
-        result: BindingResult ){
+    @PutMapping("/{lancamentoId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun atualizar(
+        @PathVariable lancamentoId: String,
+        @RequestBody lancamentoDto: LancamentoDto
+    ) {
 
-        lancamentoService.atualizar(lancamentoId,lancamentoDto)
+        lancamentoService.atualizar(lancamentoId, lancamentoDto)
+    }
+
+    @DeleteMapping("/{lancamentoId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun remover(
+        @PathVariable lancamentoId: String
+    ) {
+        lancamentoService.remover(lancamentoId)
     }
 }
